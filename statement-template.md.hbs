@@ -1,0 +1,272 @@
+# Accessibility statement for {{title}}
+{{! Note: throughout this document are note sections denoted inside comments (like this) and marked ‘Note’.
+There are also additional comments which provide further guidance.
+All of these sections should be removed before publication.
+
+Start with a brief explanation of which websites or mobile apps the statement covers.
+
+You can have a single accessibility statement that covers multiple domains, or a separate statement for each domain or
+subdomain.
+As long as the user can access relevant accessibility information easily from any page on your website. }}
+
+{{! The Home Office has decided to ensure that we have individual accessibility statements for each ‘service’ that is
+a distinct platform or could be deemed to be manged separately from other services that it links with.
+For example, there are several ‘services’ within the EU Settlement Scheme that all form part of the same user journey
+but are technically separate and managed by different teams.
+Each on of those separate parts of the journey needs to have an accessibility statement that represents the issues with
+that service. }}
+
+This accessibility statement applies to {{scope}}.
+
+{{! Note: use the section below to make a brief, general statement about what the website allows disabled users to do.
+If your testing says one of the features below are not true, remove them. }}
+This website is run by {{organisation}}.
+We want as many people as possible to be able to use this website.
+For example, that means you should be able to:
+{{#each accessibility-features}}
+ - {{this}}
+{{/each}}
+
+We’ve also made the website text as simple as possible to understand.
+[AbilityNet] has advice on making your device easier to use if you have a disability.
+
+
+## How accessible this website is
+{{! Note: use this section to provide information that a disabled user can act on - for example, avoid a particular
+section of the website, or request an alternative version rather than waste time trying to make it work with their
+assistive technology. Try to list in order of most impact to least impact. }}
+
+We know some parts of this website are not fully accessible.
+You can see a full list of any issues we currently know about in the Non-accessible content section of this statement.
+
+
+## Feedback and contact information
+
+If you need information on this website in a different format like accessible PDF, large print, easy read, audio
+recording or braille:
+{{! You must also include contact information for people who need assistance in completing the journey, such as
+assisted digital support. }}
+{{#if email-address}} - email {{email-address}}{{/if}}
+{{#if phone-number}} - call {{phone-number}}{{/if}}
+{{#each other-contacts}}
+ - {{#if type}}{{type}} - {{/if}}{{contact}}
+{{/each}}
+
+We’ll consider your request and get back to you in {{response-time}} days.
+
+
+## Reporting accessibility problems with this website
+
+We’re always looking to improve the accessibility of this website.
+If you find any problems not listed on this page or think we’re not meeting accessibility requirements, contact:
+{{how-to-report-issues}}
+{{issues-contact}}
+{{! This should be a contact within the product team who is either directly able to effect these changes, or who can
+ensure that they are added to the development backlog.
+The Accessibility and Inclusion team does not provide this service.
+
+Provide a range of contact methods that meet as many different access needs as possible such as:
+email, phone, online chat, service desk. }}
+
+[Read tips on contacting organisation about inaccessible websites][contact-tips].
+
+
+## Enforcement procedure
+
+The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and
+Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with
+how we respond to your complaint, [contact the Equality Advisory and Support Service (EASS)][contact-eass].
+
+If you are in Northern Ireland and are not happy with how we respond to your complaint you can contact the [Equalities
+Commission for Northern Ireland][equality-ni] who are responsible for enforcing the Public Sector Bodies (Websites and Mobile
+Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’) in Northern Ireland.
+
+
+{{#contact-phone-person}}
+## Contacting us by phone or visiting us in person
+{{! Note: If users can contact you by phone or in person you should list the assistive facilities that are available.
+If you do not know what facilities are available then remove this section. }}
+
+{{#if deaf}}
+We provide a text relay service for people who are D/deaf, hearing impaired or have a speech impediment.
+{{/if}}
+
+{{#if induction-loops}}
+Our offices have audio induction loops, or if you contact us before your visit we can arrange a sign language
+translator or other support to help you complete the service in person.
+{{/if}}
+
+{{#if contact-page-link}}
+Find out how to contact us {{contact-page-link}}.
+{{/if}}
+{{/contact-phone-person}}
+
+
+## Technical information about this website’s accessibility
+
+The Home Office is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites
+and Mobile Applications) (No. 2) Accessibility Regulations 2018.
+
+## Compliance status
+{{! Note: say that the website is fully compliant if the website meets WCAG 2.1 AA standard in full.
+Say that it’s partially compliant if it meets most requirements of the WCAG 2.1 AA standard.
+If it does not meet most requirements of the WCAG 2.1 AA standard, say that it’s not compliant.
+If the service has not been sufficiently tested say ‘not’.
+Only say ‘fully’ if it has been given that label following an audit by a reputable accessibility expert approved by the
+Home Office Accessibility and Inclusion team.
+
+If your website is either partially compliant or not compliant WCAG 2.1 AA standard, you’ll need to explain why.
+This will be due to one or both of the following:
+ · non-compliances - this means the content in question is in scope of the regulations, but there’s an accessibility
+   problem with it
+ · an exemption - this means the inaccessible content is out of scope of the regulations, or it’d be a disproportionate
+   burden for you to make it accessible
+
+These are the legally required ways of expressing the compliance status of your website: }}
+
+{{#if compliance.full}}
+This website is fully compliant with the [Web Content Accessibility Guidelines version 2.1][wcag-v2] AA standard.
+{{else if compliance.partial}}
+This website is partially compliant with the [Web Content Accessibility Guidelines version 2.1][wcag-v2] AA standard,
+due to the {{compliance.status}} listed below.
+{{else}}
+This website is not compliant with the [Web Content Accessibility Guidelines version 2.1][wcag-v2] AA standard. The
+{{compliance.status}} are listed below.
+{{/if}}
+
+
+{{#if compliance.non-accessible}}
+## Non-accessible content
+{{! Note: if the website is fully compliant with the WCAG 2.1 AA standard, you can leave the ‘Non-accessible content’
+section out.
+
+Otherwise, do not change the ‘Non-accessible content’ heading or the ‘The content listed below is non-accessible for
+the following reasons’ sentence - they’re legally required.
+
+Do not change the ‘Non-compliance with the accessibility regulations’, ‘Disproportionate burden’ and ‘Content that’s
+not within the scope of the accessibility regulations’ subheadings: they’re also legally required.
+
+But if you need to list a lot of problems, you can break these subsections up with further subheadings - for example,
+‘Navigation and accessing information’ or ‘Interactive tools and transactions’. }}
+
+{{#if compliance.full}}
+Currently we have not identified any content that is non-compliant, represents a disproportionate burden, or is outside
+of the scope of the regulations.
+{{! If you are claiming to be fully compliant, use this wording. }}
+{{else}}
+The content listed below is non-accessible for the following reasons.
+{{/if}}
+
+### Non-compliance with the accessibility regulations
+{{! Note: In this subsection, list:
+ · accessibility problems
+ · WCAG 2.1 AA guideline that it failed against. If it is not a WCAG issue but still an accessibility issue you should
+   still list the issue.
+ · when you plan to fix the problem
+
+Do not include any problems where you’re claiming disproportionate burden, or where the problem is outside the scope of
+the accessibility regulations (those should go in the subsections below).
+
+Example:
+  Some images do not have a text alternative, so people using a screen reader cannot access the information.
+  This fails WCAG guideline 1.1 Text Alternatives.
+
+  We plan to add text alternatives for all images by September 2020. When we publish new content we’ll make sure our
+  use of images meets accessibility standards.
+
+When describing issues here try to clearly explain what the problem is and what the effect will be on users.
+For example:
+  Some of the input fields on the application form do not have clear labels which means they are not described well by
+  screen readers.
+  This could cause some users to not know what information they need to provide and stop them from completing the form.
+  We plan to resolve this problem by [give date].
+}}
+{{#each non-compliance-list}}
+ - {{accessibility-problem}}
+   {{wcag-guideline}}
+   {{resolution-date}}
+{{else}}
+{{! If you are claiming to be fully compliant use this wording. }}
+We have not identified any areas of the website that are non-compliant with the regulations or Web Content
+Accessibility Guidelines 2.1 (AA).
+If you find an issue that we have yet to identify please contact us using one of the routes described in the Feedback
+and contact information section of this statement.
+{{/each}}
+
+### Disproportionate burden
+{{! Note: in this subsection list accessibility problems you’re claiming would be a disproportionate burden to fix.
+
+Bear in mind that something which is a disproportionate burden now will not necessarily be a disproportionate burden
+forever.
+If the circumstances change, your ability to claim disproportionate burden may change too. }}
+{{#each disproportionate-burden-list}}
+{{! It is the Home Offices view that we will not be claiming disproportionate burden at any point.
+You must keep this heading so use the text provided.
+If you feel you need to discuss a possible disproportionate burden case or other PSBAR related accessibility issue,
+please contact access@digital.homeoffice.gov.uk }}
+{{disproportionate-burden}}
+{{else}}
+At this time, we have not made any disproportionate burden claims.
+{{/each}}
+
+### Content that’s not within the scope of the accessibility regulations
+{{! Note: in this subsection list accessibility problems that fall outside the scope of the accessibility regulations.
+
+For example:
+
+  #### PDFs and other documents
+  Some of our PDFs and Word documents are essential to providing our services.
+  For example we have PDFs with information on how users can access our services, and forms published as Word documents.
+  By September 2020, we plan to either fix these or replace them with accessible HTML pages.
+
+  The accessibility regulations do not require us to fix PDFs or other documents published before 23 September 2018 if
+  they’re not essential to providing our services.
+  For example, we do not plan to fix [example of non-essential document].
+
+  Any new PDFs or Word documents we publish will meet accessibility standards.
+
+  #### Live video
+  We do not plan to add captions to live video streams because live video is exempt from meeting the accessibility
+  regulations.
+}}
+{{#each not-in-scope-list}}
+#### {{scope-title}}
+{{scope-description}}
+{{else}}
+At this time, we have not identified any content that is not within scope of the accessibility regulations.
+{{! If you have no content that is not within scope of the accessibility regulations, use this wording. }}
+{{/each}}
+{{/if}}{{! ## Non-accessible content /end }}
+
+
+## Preparation of this accessibility statement
+{{! Note: the wording about when the statement was prepared is legally required, so do not change it. }}
+
+This statement was prepared on {{date-first-published}}.
+It was last reviewed on {{date-last-reviewed}}.
+
+This website was last tested on {{date-tested}}.
+{{#if home-office-tested}}{{! If the service has been tested internally you should use this. }}
+Testing was carried out internally by the Home Office.
+
+{{#if extra-test-info}}
+{{extra-test-info}}
+{{else}}
+We tested the service based on a user's ability to complete key journeys.
+All parts of the chosen journeys were tested, including documents.
+Journeys were chosen on a number of factors including usage statistics, risk assessments and subject matter.
+{{/if}}
+{{else}}
+The test was carried out by {{#if organisation-tested}}{{organisation-tested}}{{else}}the Development Team{{/if}}.
+
+{{extra-test-info}}
+{{/if}}
+
+
+
+[AbilityNet]: https://mcmw.abilitynet.org.uk/ "the Ability Net website"
+[contact-tips]: https://www.w3.org/WAI/teach-advocate/contact-inaccessible-websites/ "Contacting Organizations about Inaccessible Websites"
+[contact-eass]: https://www.equalityadvisoryservice.com/ "Equality Advisory and Support Service"
+[equality-ni]: https://www.equalityni.org/Home "Equality Commission for Northern Ireland"
+[wcag-v2]: https://www.w3.org/TR/WCAG21/ "Web Content Accessibility Guidelines (WCAG) 2.1"
+{{! [exemptions]: https://www.legislation.gov.uk/uksi/2018/952/regulation/4/made "The Public Sector Bodies Accessibility Regulations 2018" }}

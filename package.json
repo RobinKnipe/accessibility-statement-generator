@@ -1,0 +1,28 @@
+{
+  "name": "accessibility-statement-generator",
+  "version": "0.0.1",
+  "description": "A CLI with prompts to facilitate the creation of PSBAR compliant Accessibility Statements.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobinKnipe/asg.git"
+  },
+  "keywords": [
+    "accessibility",
+    "statement"
+  ],
+  "author": "Robin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RobinKnipe/asg/issues"
+  },
+  "homepage": "https://github.com/RobinKnipe/asg#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3",
+    "inquirer-datepicker-prompt": "^0.4.2",
+    "plop": "^2.7.4"
+  }
+}
