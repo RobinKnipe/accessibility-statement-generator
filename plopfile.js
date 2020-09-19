@@ -8,7 +8,7 @@ const formatDate = date => `${date.getDate()} ${months[date.getMonth()]} ${date.
 
 module.exports = (plop) => {
   plop.setPrompt('date', require('inquirer-datepicker-prompt'));
-  plop.setPrompt('recursive', require('./src/recursive'));
+  // plop.setPrompt('recursive', require('./src/recursive'));
   plop.setHelper('json', obj => JSON.stringify(obj));
   plop.setGenerator('basics', {
     description: pckg.description,
@@ -17,7 +17,7 @@ module.exports = (plop) => {
       name: 'title',
       loop: true,
       message: 'Please enter the title of the service'
-    }, {
+    }, { /*
       type: 'input',
       name: 'scope',
       message: 'Please enter the scope of the service'
@@ -45,23 +45,22 @@ module.exports = (plop) => {
       type: 'input',
       name: 'phone-number',
       message: 'Please enter the phone number where users can get help with the service'
-    }, {
-      type: 'recursive',
+    }, { */
+      type: 'confirm',
       name: 'other-contacts',
-      message: 'Are there any other forms of contact where users can get help with the service?',
-      prompts: [{
-        type: 'input',
-        name: 'type',
-        message: 'Please enter the type of contact method (e.g. text phone) [optional]'
-      }, {
-        type: 'input',
-        name: 'contact',
-        message: 'Please enter the details for this contact method'
-      }]
+      message: 'Are there any other forms of contact where users can get help with the service?'
+    }, {
+      type: 'editor',
+      name: 'other-contacts',
+      message: 'Please enter the details of the contact methods',
+      askAnswered: true,
+      when: answers => console.log(answers) || answers['other-contacts'],
+      default: '# Please enter the details of the contact methods below.' +
+        ''
     }, {
       type: 'number',
       name: 'response-time',
-      message: 'Please enter the maximum response time (in days)'
+      message: 'Please enter the maximum response time (in days)' /*
     }, {
       type: 'input',
       name: 'how-to-report-issues',
@@ -175,13 +174,13 @@ module.exports = (plop) => {
     }, {
       type: 'input',
       name: 'extra-test-info',
-      message: 'Please enter any extra details about how the testing was carried out [optional]'
+      message: 'Please enter any extra details about how the testing was carried out [optional]' */
     }],
 
     actions: [{
       type: 'add',
       path: 'accessibility-statements/{{title}}-{{date}}.json',
-      template: '{{#json this}}'
+      template: '{{#json this}}{{/json}}'
     }, {
       type: 'add',
       path: 'accessibility-statements/{{title}}-{{date}}.md',
