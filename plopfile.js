@@ -6,10 +6,6 @@ const recommended = require('remark-preset-lint-recommended');
 const html = require('remark-html');
 const reporter = require('vfile-reporter');
 
-('## Hello world!', function(err, file) {
-    console.error(report(err || file))
-    console.log(String(file))
-  });
 const glob = require('glob').sync;
 const pckg = require('./package.json');
 const Promise = require('bluebird');
@@ -120,6 +116,7 @@ const complianceLevels = [
   { name: 'No accessibility testing has been completed yet', value: 'untested' }
 ];
 const stringifyComplianceStatus = input => input.map(i => i.replace(/ .*$/, '').toLowerCase()).join(' and ');
+const promptFormat = ['d', '/', 'm', '/', 'yyyy'];
 
 module.exports = (plop) => {
   plop.setPrompt('date', require('inquirer-datepicker-prompt'));
@@ -279,8 +276,9 @@ module.exports = (plop) => {
       type: 'date',
       name: 'date-first-published',
       message: 'Please enter the date this statement will be published',
-      format: ['d', '/', 'm', '/', 'yy'],
-      date: { max: today }
+      format: promptFormat,
+      date: { max: today },
+      filter: answer => formatDate(new Date(answer))
     // }, {
     //   type: 'date',
     //   name: 'date-last-reviewed',
@@ -289,8 +287,9 @@ module.exports = (plop) => {
       type: 'date',
       name: 'date-tested',
       message: 'Please enter the date the last accessibility test was completed',
-      format: ['d', '/', 'm', '/', 'yy'],
+      format: promptFormat,
       date: { max: today },
+      filter: answer => formatDate(new Date(answer)),
       when: answers => !answers.compliance.untested
     }, {
       type: 'confirm',
@@ -312,15 +311,14 @@ module.exports = (plop) => {
     actions: answers => {
       process.chdir(plop.getPlopfilePath());
 
-      const date = formatDate(today);
-      const pathName = `accessibility-statements/${answers.title}-${date}`;
+      const pathName = `accessibility-statements/${answers.title}-${today}`;
       const versions = glob(pathName + '*')
         .map(p => p.match(/-v(?<version>\d+)\.\w+/))
         .map(v => parseInt(v ? v.groups.version : 0, 10));
       const version = versions.length && (Math.max(...versions) + 1);
       const pathNameVersion = `${pathName}${version ? '-v' + version : ''}`;
       const data = {
-        'date-last-reviewed': date
+        'date-last-reviewed': formatDate(new Date(today))
       };
 
       return [{
