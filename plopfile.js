@@ -161,7 +161,7 @@ module.exports = (plop) => {
     }, {
       type: 'input',
       name: 'phone-number',
-      message: 'Please enter the phone number where users can get help with the service'
+      message: 'Please enter a phone number where users can get help with the service [optional]'
     }, {
       type: 'confirm',
       name: 'other-contacts',
