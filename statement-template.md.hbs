@@ -48,9 +48,7 @@ recording or braille:
 assisted digital support. }}
 {{#if email-address}} - email {{email-address}}{{/if}}
 {{#if phone-number}} - call {{phone-number}}{{/if}}
-{{#each other-contacts}}
- - {{#if type}}{{type}} - {{/if}}{{contact}}
-{{/each}}
+{{other-contacts}}
 
 We’ll consider your request and get back to you in {{response-time}} days.
 
@@ -170,7 +168,6 @@ the accessibility regulations (those should go in the subsections below).
 Example:
   Some images do not have a text alternative, so people using a screen reader cannot access the information.
   This fails WCAG guideline 1.1 Text Alternatives.
-
   We plan to add text alternatives for all images by September 2020. When we publish new content we’ll make sure our
   use of images meets accessibility standards.
 
@@ -181,17 +178,26 @@ For example:
   This could cause some users to not know what information they need to provide and stop them from completing the form.
   We plan to resolve this problem by [give date].
 }}
-{{#each non-compliance-list}}
- - {{accessibility-problem}}
-   {{wcag-guideline}}
-   {{resolution-date}}
+{{#if compliance.untested}}
+Thorough testing to confirm the accessibility of the website against the regulation requirements and WCAG 2.1 AA
+standards is on our roadmap, however it has not been completed yet.
+
+This is a failing on our part and means at this time we cannot confirm any known issues of non-compliance.
+
+Because of this we stand ready to make reasonable adjustments for users until formal testing and proactive remediation
+plans can be confirmed and ask any users that encounter accessibility issues to get in touch with us to receive support
+and to notify us of issues so we can start making improvements.
+{{else}}
+{{#if non-compliance-list}}
+{{non-compliance-list}}
 {{else}}
 {{! If you are claiming to be fully compliant use this wording. }}
 We have not identified any areas of the website that are non-compliant with the regulations or Web Content
 Accessibility Guidelines 2.1 (AA).
 If you find an issue that we have yet to identify please contact us using one of the routes described in the Feedback
 and contact information section of this statement.
-{{/each}}
+{{/if}}
+{{/if}}
 
 ### Disproportionate burden
 {{! Note: in this subsection list accessibility problems you’re claiming would be a disproportionate burden to fix.
@@ -199,15 +205,15 @@ and contact information section of this statement.
 Bear in mind that something which is a disproportionate burden now will not necessarily be a disproportionate burden
 forever.
 If the circumstances change, your ability to claim disproportionate burden may change too. }}
-{{#each disproportionate-burden-list}}
-{{! It is the Home Offices view that we will not be claiming disproportionate burden at any point.
+{{#if disproportionate-burden-list}}
+{{! It is the Home Office's view that we will not be claiming disproportionate burden at any point.
 You must keep this heading so use the text provided.
 If you feel you need to discuss a possible disproportionate burden case or other PSBAR related accessibility issue,
 please contact access@digital.homeoffice.gov.uk }}
-{{disproportionate-burden}}
+{{disproportionate-burden-list}}
 {{else}}
 At this time, we have not made any disproportionate burden claims.
-{{/each}}
+{{/if}}
 
 ### Content that’s not within the scope of the accessibility regulations
 {{! Note: in this subsection list accessibility problems that fall outside the scope of the accessibility regulations.
@@ -229,13 +235,12 @@ For example:
   We do not plan to add captions to live video streams because live video is exempt from meeting the accessibility
   regulations.
 }}
-{{#each not-in-scope-list}}
-#### {{scope-title}}
-{{scope-description}}
+{{#if not-in-scope-list}}
+{{not-in-scope-list}}
 {{else}}
 At this time, we have not identified any content that is not within scope of the accessibility regulations.
 {{! If you have no content that is not within scope of the accessibility regulations, use this wording. }}
-{{/each}}
+{{/if}}
 {{/if}}{{! ## Non-accessible content /end }}
 
 
@@ -245,6 +250,7 @@ At this time, we have not identified any content that is not within scope of the
 This statement was prepared on {{date-first-published}}.
 It was last reviewed on {{date-last-reviewed}}.
 
+{{#unless compliance.untested}}
 This website was last tested on {{date-tested}}.
 {{#if home-office-tested}}{{! If the service has been tested internally you should use this. }}
 Testing was carried out internally by the Home Office.
@@ -261,6 +267,7 @@ The test was carried out by {{#if organisation-tested}}{{organisation-tested}}{{
 
 {{extra-test-info}}
 {{/if}}
+{{/unless}}
 
 
 

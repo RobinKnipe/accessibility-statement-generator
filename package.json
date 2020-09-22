@@ -21,8 +21,14 @@
   },
   "homepage": "https://github.com/RobinKnipe/asg#readme",
   "dependencies": {
+    "bluebird": "^3.7.2",
+    "glob": "^7.1.6",
     "inquirer": "^7.3.3",
     "inquirer-datepicker-prompt": "^0.4.2",
-    "plop": "^2.7.4"
+    "plop": "^2.7.4",
+    "remark": "^12.0.1",
+    "remark-html": "^12.0.0",
+    "remark-preset-lint-recommended": "^4.0.1",
+    "vfile-reporter": "^6.0.1"
   }
 }
