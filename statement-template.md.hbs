@@ -247,11 +247,11 @@ At this time, we have not identified any content that is not within scope of the
 ## Preparation of this accessibility statement
 {{! Note: the wording about when the statement was prepared is legally required, so do not change it. }}
 
-This statement was prepared on {{date-first-published}}.
-It was last reviewed on {{date-last-reviewed}}.
+This statement was prepared on {{#formatDate date-first-published}}{{/formatDate}}.
+It was last reviewed on {{#formatDate date-last-reviewed}}{{/formatDate}}.
 
 {{#unless compliance.untested}}
-This website was last tested on {{date-tested}}.
+  This website was last tested on {{#formatDate date-tested}}{{/formatDate}}.
 {{#if home-office-tested}}{{! If the service has been tested internally you should use this. }}
 Testing was carried out internally by the Home Office.
 

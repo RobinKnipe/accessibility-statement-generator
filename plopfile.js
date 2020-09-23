@@ -12,7 +12,10 @@ const Promise = require('bluebird');
 const today = new Date().toISOString().split('T')[0];
 const months = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
-const formatDate = date => `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+const formatDate = date => {
+  const dateObj = new Date(date);
+  return `${dateObj.getDate()} ${months[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+}
 const removeComments = answer => answer.replace(/(?:^|\n)\# [^\n]*/g, '').replace(/(?:(?:^|\n)\#)+\n/g, '\n').trim();
 
 const render = remark().use(recommended).use(html).process;
@@ -120,6 +123,7 @@ const promptFormat = ['d', '/', 'm', '/', 'yyyy'];
 
 module.exports = (plop) => {
   plop.setPrompt('date', require('inquirer-datepicker-prompt'));
+  plop.setHelper('formatDate', formatDate);
   plop.setHelper('json', obj => JSON.stringify(obj));
   plop.setActionType('markdown', (answers, config, plop) =>
     readFile(config.source)
@@ -132,7 +136,6 @@ module.exports = (plop) => {
     prompts: [{
       type: 'input',
       name: 'title',
-      loop: true,
       message: 'Please enter the title of the service'
     }, {
       type: 'input',
@@ -208,13 +211,13 @@ module.exports = (plop) => {
       message: 'Has your service been tested and verified to be fully WCAG 2.1 AA compliant?',
       choices: complianceLevels.map(c => c.name),
       filter: (input, answers) => {
-        if (input !== complianceLevels[0].name) {
-          answers['non-accessible'] = true;
-        }
         answers.compliance = {
           ...answers.compliance,
           [complianceLevels.find(c => c.name === input).value]: true
         };
+        if (input !== complianceLevels[0].name) {
+          answers.compliance['non-accessible'] = true;
+        }
         return input;
       }
     }, {
@@ -232,6 +235,7 @@ module.exports = (plop) => {
         'or it’d be a disproportionate burden for you to make it accessible'
       ],
       filter: stringifyComplianceStatus,
+      validate: answer => !!(answer && answer.length),
       when: answers => answers.compliance['non-accessible']
     }, {
       type: 'confirm',
@@ -277,8 +281,7 @@ module.exports = (plop) => {
       name: 'date-first-published',
       message: 'Please enter the date this statement will be published',
       format: promptFormat,
-      date: { max: today },
-      filter: answer => formatDate(new Date(answer))
+      date: { max: today }
     // }, {
     //   type: 'date',
     //   name: 'date-last-reviewed',
@@ -289,7 +292,6 @@ module.exports = (plop) => {
       message: 'Please enter the date the last accessibility test was completed',
       format: promptFormat,
       date: { max: today },
-      filter: answer => formatDate(new Date(answer)),
       when: answers => !answers.compliance.untested
     }, {
       type: 'confirm',
@@ -318,7 +320,7 @@ module.exports = (plop) => {
       const version = versions.length && (Math.max(...versions) + 1);
       const pathNameVersion = `${pathName}${version ? '-v' + version : ''}`;
       const data = {
-        'date-last-reviewed': formatDate(new Date(today))
+        'date-last-reviewed': today
       };
 
       return [{
