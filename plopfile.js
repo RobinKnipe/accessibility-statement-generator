@@ -5,6 +5,7 @@ const remark = require('remark');
 const recommended = require('remark-preset-lint-recommended');
 const html = require('remark-html');
 const reporter = require('vfile-reporter');
+const { makeDestPath, getRelativeToBasePath } = require('node-plop/lib/actions/_common-action-utils');
 
 const glob = require('glob').sync;
 const pckg = require('./package.json');
@@ -22,6 +23,14 @@ const render = remark().use(recommended).use(html).process;
 const report = vfile => console.error(reporter(vfile)) || vfile;
 const readFile = Promise.promisify(fs.readFile);
 const writeFile = Promise.promisify(fs.writeFile);
+const markdown = (answers, config, plop) => {
+  const fileDestPath = makeDestPath(answers, config, plop);
+  return readFile(config.source)
+    .then(render)
+    .then(report)
+    .then(writeFile.bind(null, fileDestPath))
+    .then(() => getRelativeToBasePath(fileDestPath, plop));
+};
 
 const HELP = `#
 # HELP: all lines that start with a hash and a space (# ), like these help
@@ -125,12 +134,7 @@ module.exports = (plop) => {
   plop.setPrompt('date', require('inquirer-datepicker-prompt'));
   plop.setHelper('formatDate', formatDate);
   plop.setHelper('json', obj => JSON.stringify(obj));
-  plop.setActionType('markdown', (answers, config, plop) =>
-    readFile(config.source)
-      .then(render)
-      .then(report)
-      .then(writeFile.bind(null, config.path))
-  );
+  plop.setActionType('markdown', markdown);
   plop.setGenerator('basics', {
     description: pckg.description,
     prompts: [{
@@ -340,4 +344,6 @@ module.exports = (plop) => {
       }];
     }
   });
+
+  return plop;
 };
