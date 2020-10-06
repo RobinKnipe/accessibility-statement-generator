@@ -43,18 +43,19 @@ ${HELP}
 #
 # Below are some examples that show the desired style:
 #
-# - text-phone - 03 8398 74663
-# - your local Post Office
-# - our offices:
+# -   text-phone - 03 8398 74663
+# -   your local Post Office
+# -   our offices:
 #     Home Office
 #     2 Marsham Street
 #     Westminster
 #     London
 #     SW1P 4DF
-# - further details on our [Contact Us page](/contact "Contact Us")
+# -   further details on our [Contact Us page](/contact "Contact Us")
 #
 # NOTE: the spacing on the address lines is important to keep it part of the
-# same list item (4 spaces at the start of those lines).
+# same list item (4 spaces at the start of those lines). Also each list item
+# line should begin with a dash (-) and 3 spaces.
 `;
 const nonComplianceInstructions = `
 
@@ -67,21 +68,21 @@ ${HELP}
 #
 # Below are some examples that show the desired style:
 #
-# - Some images do not have a text alternative, so people using a screen reader
-#     cannot access the information.  
+# -   Some images do not have a text alternative, so people using a screen
+#     reader cannot access the information.  
 #     This fails WCAG guideline 1.1 Text Alternatives.  
 #     We plan to add text alternatives for all images by September 2020. When
 #     we publish new content we’ll make sure our use of images meets
 #     accessibility standards.
-# - Some of the input fields on the application form do not have clear labels
+# -   Some of the input fields on the application form do not have clear labels
 #     which means they are not described well by screen readers. This could
 #     cause some users to not know what information they need to provide and
 #     stop them from completing the form.  
 #     We plan to resolve this problem by 1 November 2020.
 #
-# NOTE: the dash (-) at the start of each issue, and spacing on the following
-# lines are important to keep it part of the same list item (4 spaces at the
-# start of those lines).
+# NOTE: the dash (-), and 3 spaces, at the start of each issue, and spacing on
+# the following lines are important to keep it part of the same list item (4
+# spaces at the start of those lines).
 `;
 const disproportionateBurdenInstructions = `
 

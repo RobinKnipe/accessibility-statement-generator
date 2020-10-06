@@ -24,11 +24,11 @@ This website is run by {{organisation}}.
 We want as many people as possible to be able to use this website.
 For example, that means you should be able to:
 {{#each accessibility-features}}
- - {{this}}
+-   {{this}}
 {{/each}}
 
 We've also made the website text as simple as possible to understand.
-[AbilityNet] has advice on making your device easier to use if you have a disability.
+[AbilityNet][abilitynet] has advice on making your device easier to use if you have a disability.
 
 
 ## How accessible this website is
@@ -46,8 +46,8 @@ If you need information on this website in a different format like accessible PD
 recording or braille:
 {{! You must also include contact information for people who need assistance in completing the journey, such as
 assisted digital support. }}
-{{#if email-address}} - email {{email-address}}{{/if}}
-{{#if phone-number}} - call {{phone-number}}{{/if}}
+{{#if email-address}}-   email {{email-address}}{{/if}}
+{{#if phone-number}}-   call {{phone-number}}{{/if}}
 {{#if other-contacts}}{{other-contacts}}{{/if}}
 
 We'll consider your request and get back to you in {{response-time}} days.
@@ -251,7 +251,7 @@ This statement was prepared on {{#formatDate date-first-published}}{{/formatDate
 It was last reviewed on {{#formatDate date-last-reviewed}}{{/formatDate}}.
 
 {{#unless compliance.untested}}
-  This website was last tested on {{#formatDate date-tested}}{{/formatDate}}.
+This website was last tested on {{#formatDate date-tested}}{{/formatDate}}.
 {{#if home-office-tested}}{{! If the service has been tested internally you should use this. }}
 Testing was carried out internally by the Home Office.
 
@@ -271,7 +271,7 @@ The test was carried out by {{#if organisation-tested}}{{organisation-tested}}{{
 
 
 
-[AbilityNet]: https://mcmw.abilitynet.org.uk/ "the Ability Net website"
+[abilitynet]: https://mcmw.abilitynet.org.uk/ "the Ability Net website"
 [contact-tips]: https://www.w3.org/WAI/teach-advocate/contact-inaccessible-websites/ "Contacting Organizations about Inaccessible Websites"
 [contact-eass]: https://www.equalityadvisoryservice.com/ "Equality Advisory and Support Service"
 [equality-ni]: https://www.equalityni.org/Home "Equality Commission for Northern Ireland"
