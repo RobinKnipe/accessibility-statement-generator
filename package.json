@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A CLI with prompts to facilitate the creation of PSBAR compliant Accessibility Statements.",
   "main": "index.js",
+  "bin": "./asg",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
