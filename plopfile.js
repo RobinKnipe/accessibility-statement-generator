@@ -155,13 +155,13 @@ module.exports = (plop) => {
       name: 'accessibility-features',
       message: 'Please select the accessibility features your service supports from the list',
       choices: [
-        'Change colours, contrast levels and fonts',
-        'Zoom in up to 300% without the text spilling off the screen',
-        'Navigate most of the website using just a keyboard',
-        'Navigate most of the website using speech recognition software',
-        'Listen to most of the website using a screen reader ' +
-        '(including the most recent versions of JAWS, NVDA and VoiceOver)'
-      ]
+        { name: 'Change colours, contrast levels and fonts', short: 'change styles' },
+        { name: 'Zoom in up to 300% without the text spilling off the screen', short: 'zoom' },
+        { name: 'Navigate most of the website using just a keyboard', short: 'keyboard navigation' },
+        { name: 'Navigate most of the website using speech recognition software', short: 'speech navigation' },
+        { name: 'Listen to most of the website using a screen reader ' +
+            '(including the most recent versions of JAWS, NVDA and VoiceOver)', short: 'screen reader friendly' }
+      ].map(c => ({ value: c.name, ...c }))
     }, {
       type: 'input',
       name: 'email-address',
