@@ -1,3 +1,10 @@
+
+# ignore generated files
+accessibility-statements/*
+
+
+# Node.js defaults from GitHub...
+
 # Logs
 logs
 *.log
