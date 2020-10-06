@@ -134,6 +134,7 @@ module.exports = (plop) => {
   plop.setPrompt('date', require('inquirer-datepicker-prompt'));
   plop.setHelper('formatDate', formatDate);
   plop.setHelper('json', obj => JSON.stringify(obj));
+  plop.setHelper('natural-list', list => list.join(' and '));
   plop.setActionType('markdown', markdown);
   plop.setGenerator('basics', {
     description: pckg.description,
@@ -233,12 +234,14 @@ module.exports = (plop) => {
       type: 'checkbox',
       name: 'compliance.status',
       message: 'What types of issues does your service have? [Select both if they apply]',
-      choices: [
-        'Non-compliances - i.e. content in scope of the regulations but with accessibility issues',
-        'Exemptions - i.e. inaccessible content that is out of scope of the regulations, ' +
-        'or it’d be a disproportionate burden for you to make it accessible'
-      ],
-      filter: stringifyComplianceStatus,
+      choices: [{
+        name: 'Non-compliances - i.e. content in scope of the regulations but with accessibility issues',
+        short: 'non-compliances'
+      }, {
+        name: 'Exemptions - i.e. inaccessible content that is out of scope of the regulations, ' +
+          'or it’d be a disproportionate burden for you to make it accessible',
+        short: 'exemptions'
+      }].map(c => ({ value: c.short, ...c })),
       validate: answer => !!(answer && answer.length),
       when: answers => answers.compliance['non-accessible']
     }, {

@@ -126,10 +126,10 @@ These are the legally required ways of expressing the compliance status of your 
 This website is fully compliant with the [Web Content Accessibility Guidelines version 2.1][wcag-v2] AA standard.
 {{else if compliance.partial}}
 This website is partially compliant with the [Web Content Accessibility Guidelines version 2.1][wcag-v2] AA standard,
-due to the {{compliance.status}} listed below.
+due to the {{#natural-list compliance.status}}{{/natural-list}} listed below.
 {{else}}
 This website is not compliant with the [Web Content Accessibility Guidelines version 2.1][wcag-v2] AA standard. The
-{{compliance.status}} are listed below.
+{{#natural-list compliance.status}}{{/natural-list}} are listed below.
 {{/if}}
 
 
