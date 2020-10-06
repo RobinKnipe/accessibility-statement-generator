@@ -1,6 +1,6 @@
 {
   "name": "accessibility-statement-generator",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A CLI with prompts to facilitate the creation of PSBAR compliant Accessibility Statements.",
   "main": "index.js",
   "bin": "./asg",
