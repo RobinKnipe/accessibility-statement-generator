@@ -122,10 +122,10 @@ const outOfScopeInstructions = `
 # the point in the statement, please prefix your titles with that.
 `;
 const complianceLevels = [
-  { name: 'Yes, our service has been tested and is fully compliant', value: 'full' },
-  { name: 'Our service has been tested and is mostly compliant', value: 'partial' },
-  { name: 'Our service has been tested but is not compliant', value: 'not' },
-  { name: 'No accessibility testing has been completed yet', value: 'untested' }
+  { name: 'Yes, our service has been tested and is fully compliant', value: 'full', short: 'fully compliant' },
+  { name: 'Our service has been tested and is mostly compliant', value: 'partial', short: 'partially compliant' },
+  { name: 'Our service has been tested but is not compliant', value: 'not', short: 'non-compliant' },
+  { name: 'No accessibility testing has been completed yet', value: 'untested', short: 'never tested' }
 ];
 const stringifyComplianceStatus = input => input.map(i => i.replace(/ .*$/, '').toLowerCase()).join(' and ');
 const promptFormat = ['d', '/', 'm', '/', 'yyyy'];
@@ -212,17 +212,17 @@ module.exports = (plop) => {
     }, {
       type: 'rawlist',
       name: 'compliance.level',
-      message: 'Has your service been tested and verified to be fully WCAG 2.1 AA compliant?',
-      choices: complianceLevels.map(c => c.name),
+      message: 'Has your service been tested and verified to be WCAG 2.1 AA compliant?',
+      choices: complianceLevels,
       filter: (input, answers) => {
         answers.compliance = {
           ...answers.compliance,
-          [complianceLevels.find(c => c.name === input).value]: true
+          [input]: true
         };
-        if (input !== complianceLevels[0].name) {
+        if (input !== complianceLevels[0].value) {
           answers.compliance['non-accessible'] = true;
         }
-        return input;
+        return complianceLevels.indexOf(complianceLevels.find(c => c.value === input)) + 1;
       }
     }, {
       type: 'confirm',
