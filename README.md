@@ -45,3 +45,18 @@ Accessibility Statements, and eventually automate their updates after CI test
 runs. While the need for some manual testing will always exist; hopefully this
 will help with everything else, and improve upon the current document template
 by bringing the advantages of GitHub's superior collaborative features.
+
+## How it works
+
+The answers collected by the CLI (or data from a JSON file), is injected into
+the Handlebars template file: `./statement-template.md.hbs`. This creates a
+markdown file which (in some environments, e.g. React) may be able to be
+deployed directly into a codebase. The CLI also translates the generated
+markdown file into HTML (for cases where markdown can't be used directly).
+Because data can be loaded from a JSON file, a previous session's details can
+be automatically updated, and the resulting file used to update a statement
+without the interactive part of the CLI:
+```bash
+./asg ./my-service-data.json n
+```
+NOTE: the second argument `n` is important to cancel the interactive prompts.
