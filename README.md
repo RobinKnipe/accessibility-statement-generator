@@ -23,12 +23,12 @@ as defaults, so you can skip through (by simply pressing Enter/Return), and
 updating as necessary. This part can be skipped by running the CLI and
 specifying a target file:
 ```bash
-./asg ./accessibility-statements/My Service-<date>.json
+./asg ./accessibility-statements/My Service.json
 ```
 The next prompt - whether to edit these answers - can also be skipped by adding
 a further option `y` (yes edit), `n` (don't edit):
 ```bash
-./asg ./accessibility-statements/My Service-<date>.json y
+./asg ./accessibility-statements/My Service.json y
 ```
 
 ### Skip session loading
