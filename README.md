@@ -33,7 +33,12 @@ a further option `y` (yes edit), `n` (don't edit):
 
 ### Skip session loading
 The main part of the program (the bit that asks for the necessary content), can
-be run with `plop`:
+run with this command:
+```bash
+./asg new
+```
+
+The session loading can also be skipped by running the CLI with `plop`:
 ```bash
 ./node_modules/.bin/plop
 ```
