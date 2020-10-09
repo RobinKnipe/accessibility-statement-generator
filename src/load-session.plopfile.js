@@ -8,10 +8,10 @@ const progress = require('plop').progressSpinner;
 const fileSelect = require('inquirer-file-tree-selection-prompt');
 
 const loadFileChoices = [
-  'no, just generate a new statement',
-  'yes, then let me edit the answers',
-  'yes, then just produce the statement'
-];
+  { name: 'no, just generate a new statement', value: 'new' },
+  { name: 'yes, then let me edit the answers', value: 'edit' },
+  { name: 'yes, then just produce the statement', value: 'update' }
+].map(c => ({ ...c, short: c.name }));
 const sessionFileConf = {
   type: 'file-tree-selection',
   name: 'session-file',
@@ -28,6 +28,7 @@ const accessItem = (store, pathKey) => {
 };
 
 module.exports = (plop) => {
+  let runWizard = false;
   plop.setPrompt('file-tree-selection', fileSelect);
   plop.setGenerator('load', {
     prompts: argv['session-file'] || /\.json$/i.test(argv._[2]) ? [
@@ -41,8 +42,12 @@ module.exports = (plop) => {
       message: 'Would you like to load answers from a previous session?',
       choices: loadFileChoices,
       filter(input, answers) {
-        const choice = loadFileChoices.indexOf(input);
-        answers['run-wizard'] = choice < 2;
+        const choice = loadFileChoices.indexOf(loadFileChoices.find(c => c.value == input));
+
+        // TODO: this is ugly but necessary due to a `node-plop` shortfall
+        // there is an outstanding PR to fix the issue, once that's merged, revert to previous impl
+        runWizard = choice < 2;
+
         return choice;
       }
     }, {
@@ -57,7 +62,7 @@ module.exports = (plop) => {
         onComment: console.log
       });
 
-      if (answers['run-wizard']) {
+      if (runWizard || answers['run-wizard']) {
         if (answers['session-file']) {
           progress.info(`loading session ${answers['session-file']}`);
           const defaults = loadSession(answers['session-file']);
