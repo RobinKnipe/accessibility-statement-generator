@@ -9,8 +9,8 @@ turn, an HTML page.
 
 ## Running the CLI
 
-This is a Node.js project. Instructions and installation media can be found
-here: https://nodejs.org/en/download/.
+This is a Node.js project, that requires `v12` or higher. Instructions and
+installation media can be found here: https://nodejs.org/en/download/.
 Checkout this repo and run `npm i` to install the necessary dependencies.
 Then the CLI can be run with:
 ```bash
