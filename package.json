@@ -1,9 +1,12 @@
 {
   "name": "accessibility-statement-generator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A CLI with prompts to facilitate the creation of PSBAR compliant Accessibility Statements.",
   "main": "index.js",
   "bin": "./asg",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
