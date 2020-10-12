@@ -28,7 +28,7 @@ const markdown = (answers, config, plop) => {
   return readFile(config.source)
     .then(render)
     .then(report)
-    .then(writeFile.bind(null, fileDestPath))
+    .then(vfile => writeFile(fileDestPath, vfile.contents))
     .then(() => getRelativeToBasePath(fileDestPath, plop));
 };
 
