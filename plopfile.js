@@ -267,7 +267,7 @@ module.exports = (plop) => {
       when: answers => answers['disproportionate-burden-list'] === true,
       filter: removeComments
     }, {
-      type: 'input',
+      type: 'editor',
       name: 'not-in-scope-list',
       message: 'Please enter details of items not covered by the regulations in the editor...',
       default: outOfScopeInstructions,
