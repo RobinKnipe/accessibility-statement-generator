@@ -246,17 +246,12 @@ module.exports = (plop) => {
       validate: answer => !!(answer && answer.length),
       when: answers => answers.compliance['non-accessible']
     }, {
-      type: 'confirm',
-      name: 'non-compliance-list',
-      message: 'Are there any known non-compliance issue that you would like to declare?',
-      when: answers => !answers.compliance.full && !answers.compliance.untested
-    }, {
       type: 'editor',
       name: 'non-compliance-list',
       message: 'Please enter the details of any non-compliance issues in the editor...',
       default: nonComplianceInstructions,
       askAnswered: true,
-      when: answers => answers['non-compliance-list'] === true,
+      when: answers => !answers.compliance.untested && answers.compliance.status.some(l => l === 'non-compliances'),
       filter: removeComments
     }, {
       type: 'confirm',
@@ -272,17 +267,12 @@ module.exports = (plop) => {
       when: answers => answers['disproportionate-burden-list'] === true,
       filter: removeComments
     }, {
-      type: 'confirm',
-      name: 'not-in-scope-list',
-      message: 'Are any areas of your service not in scope of the regulations?',
-      when: answers => !answers.compliance.untested && answers.compliance['non-accessible']
-    }, {
       type: 'input',
       name: 'not-in-scope-list',
       message: 'Please enter details of items not covered by the regulations in the editor...',
       default: outOfScopeInstructions,
       askAnswered: true,
-      when: answers => answers['not-in-scope-list'] === true,
+      when: answers => answers.compliance.status.some(l => l === 'exemptions'),
       filter: removeComments
     }, {
       type: 'date',
