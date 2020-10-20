@@ -98,7 +98,7 @@ const outOfScopeInstructions = `
 
 # Please enter a title and a description of any items not covered by the
 # regulations.
-#${HELP}
+${HELP}
 #
 # Below are some examples that show the desired style:
 #
