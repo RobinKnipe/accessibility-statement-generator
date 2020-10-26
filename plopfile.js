@@ -11,12 +11,7 @@ const glob = require('glob').sync;
 const pckg = require('./package.json');
 const Promise = require('bluebird');
 const today = new Date().toISOString().split('T')[0];
-const months = ['January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'];
-const formatDate = date => {
-  const dateObj = new Date(date);
-  return `${dateObj.getDate()} ${months[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
-}
+const { formatDate } = require('./src/helpers');
 const removeComments = answer => answer.replace(/(?:^|\n)\# [^\n]*/g, '').replace(/(?:(?:^|\n)\#)+\n/g, '\n').trim();
 
 const render = remark().use(recommended).use(html).process;
@@ -39,7 +34,7 @@ const HELP = `#
 const otherContactsInstructions = `
 
 # Please enter the details of the contact methods.
-${HELP} 
+${HELP}
 #
 # Below are some examples that show the desired style:
 #
@@ -69,15 +64,15 @@ ${HELP}
 # Below are some examples that show the desired style:
 #
 # -   Some images do not have a text alternative, so people using a screen
-#     reader cannot access the information.  
-#     This fails WCAG guideline 1.1 Text Alternatives.  
+#     reader cannot access the information.
+#     This fails WCAG guideline 1.1 Text Alternatives.
 #     We plan to add text alternatives for all images by September 2020. When
 #     we publish new content we’ll make sure our use of images meets
 #     accessibility standards.
 # -   Some of the input fields on the application form do not have clear labels
 #     which means they are not described well by screen readers. This could
 #     cause some users to not know what information they need to provide and
-#     stop them from completing the form.  
+#     stop them from completing the form.
 #     We plan to resolve this problem by 1 November 2020.
 #
 # NOTE: the dash (-), and 3 spaces, at the start of each issue, and spacing on
