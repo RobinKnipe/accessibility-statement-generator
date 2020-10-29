@@ -11,8 +11,7 @@ const glob = require('glob').sync;
 const pckg = require('./package.json');
 const Promise = require('bluebird');
 const today = new Date().toISOString().split('T')[0];
-const { formatDate } = require('./src/helpers');
-const removeComments = answer => answer.replace(/(?:^|\n)\# [^\n]*/g, '').replace(/(?:(?:^|\n)\#)+\n/g, '\n').trim();
+const { formatDate, removeComments } = require('./src/helpers');
 
 const render = remark().use(recommended).use(html).process;
 const report = vfile => console.error(reporter(vfile)) || vfile;
