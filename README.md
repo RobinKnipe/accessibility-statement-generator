@@ -45,7 +45,7 @@ The session loading can also be skipped by running the CLI with `plop`:
 Once the CLI has gathered all the required project information, it will create
 the three output files in the `./accessibility-statements` directory.
 
-## Set default text editor
+### Set default text editor
 Some statements require the user to enter information using the Cl default text editor. This can be set to an editor of your choice by setting the `EDITOR` and `VISUAL` environment variables.
 
 `export EDITOR="/Applications/Editor.app/Contents/MacOS/Editor"`\
