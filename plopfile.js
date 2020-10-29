@@ -10,8 +10,8 @@ const { makeDestPath, getRelativeToBasePath } = require('node-plop/lib/actions/_
 const glob = require('glob').sync;
 const pckg = require('./package.json');
 const Promise = require('bluebird');
-const today = new Date().toISOString().split('T')[0];
-const { formatDate, removeComments } = require('./src/helpers');
+
+const { formatDate, removeComments, today } = require('./src/helpers');
 
 const render = remark().use(recommended).use(html).process;
 const report = vfile => console.error(reporter(vfile)) || vfile;

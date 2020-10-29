@@ -9,5 +9,6 @@ module.exports = {
   },
   removeComments: answer => {
     return answer.replace(/(?:^|\n)\# [^\n]*/g, '').replace(/(?:(?:^|\n)\#)+\n/g, '\n').trim();
-  }
+  },
+  today: () => {return new Date().toISOString().split('T')[0];}
 };
