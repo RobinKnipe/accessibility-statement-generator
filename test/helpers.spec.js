@@ -1,5 +1,5 @@
 
-const { formatDate, removeComments } = require('../src/helpers');
+const { formatDate, removeComments, today } = require('../src/helpers');
 const {HELP, otherContactsInstructions, nonComplianceInstructions, disproportionateBurdenInstructions, outOfScopeInstructions} = require('../src/helpStrings.js');
 describe('helper functions', () => {
   describe('formatDate', () => {
@@ -25,5 +25,11 @@ describe('helper functions', () => {
 # syntax, see: https://www.markdownguide.org/basic-syntax/ for details.`)).toEqual('')
     });
   });
+
+describe('check today function', ()=>{
+  it('should return a string in format yyyy-mm-dd', ()=>{
+    expect(today()).toMatch(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/);
+  })
+});
 
 });
